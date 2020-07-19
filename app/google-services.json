@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "985602860095",
+    "firebase_url": "https://fast-note-20686.firebaseio.com",
+    "project_id": "fast-note-20686",
+    "storage_bucket": "fast-note-20686.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:985602860095:android:2676f12a9dd62eba26448a",
+        "android_client_info": {
+          "package_name": "br.com.alex.fastnote"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "985602860095-l2gooeklesh8seuettc4jcli6q1gl25j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.alex.fastnote",
+            "certificate_hash": "e4ff1248593b5dadb785e3cba91eba72ef1af0aa"
+          }
+        },
+        {
+          "client_id": "985602860095-t7pqmp40fqdcmkpphriujqjbjtrhqtfi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTu4hAzmILnzlYbL1_CKazVvL3ZHMXXac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "985602860095-t7pqmp40fqdcmkpphriujqjbjtrhqtfi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
