@@ -5,13 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.alex.fastnote.R
+import br.com.alex.fastnote.data.repository.ILoginRepository
 import br.com.alex.fastnote.data.repository.LoginRepository
 import br.com.alex.fastnote.data.repository.LoginResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class LoginViewModel(private val loginRepository: LoginRepository): ViewModel() {
+class LoginViewModel(private val loginRepository: ILoginRepository): ViewModel() {
 
     private val _loginResult by lazy { MutableLiveData<LoginResultView>() }
     val loginResult: LiveData<LoginResultView>
@@ -25,7 +26,7 @@ class LoginViewModel(private val loginRepository: LoginRepository): ViewModel() 
     val loginFormState: LiveData<LoginFormState>
         get() = _loginState
 
-    fun login(email: String, password: String){
+    fun login(email: String, password: String, saveLogin: Boolean){
         _loading.value = true
         CoroutineScope(Dispatchers.Main).launch {
             loginRepository.login(email, password) { loginResult ->
@@ -33,9 +34,7 @@ class LoginViewModel(private val loginRepository: LoginRepository): ViewModel() 
                 when(loginResult) {
                     is LoginResult.Success -> {
                         _loginResult.postValue(loginResult.loggedUser?.let { loggedUser ->
-                            LoginResultView.Success(R.string.welcome,
-                                loggedUser
-                            )
+                            LoginResultView.Success(R.string.welcome, loggedUser)
                         })
                     }
                     is LoginResult.NotFound -> {

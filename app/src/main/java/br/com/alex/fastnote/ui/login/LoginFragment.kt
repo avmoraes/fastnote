@@ -34,7 +34,7 @@ class LoginFragment: Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         login.setOnClickListener {
-            viewModel.login(username.text.toString(), password.text.toString())
+            viewModel.login(username.text.toString(), password.text.toString(), save_login.isChecked)
         }
 
         viewModel.loading.observe(viewLifecycleOwner, Observer { visible ->
@@ -100,7 +100,11 @@ class LoginFragment: Fragment() {
             setOnEditorActionListener { _, actionId, _ ->
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
-                        viewModel.login(username.text.toString(), password.text.toString())
+                        viewModel.login(
+                            username.text.toString(),
+                            password.text.toString(),
+                            save_login.isChecked
+                        )
                 }
                 false
             }

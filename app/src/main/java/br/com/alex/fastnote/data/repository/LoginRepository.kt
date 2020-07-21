@@ -1,8 +1,18 @@
 package br.com.alex.fastnote.data.repository
 
-interface LoginRepository {
+import br.com.alex.fastnote.data.repository.datasource.ILoginDataSource
 
-    suspend fun login(email: String, password: String, loginResult: (loginResult: LoginResult) -> Unit)
+class LoginRepository(private val loginDataSource: ILoginDataSource): ILoginRepository {
+    override suspend fun login(
+        email: String,
+        password: String,
+        loginResult: (loginResult: LoginResult) -> Unit
+    ) {
+        loginDataSource.login(email, password, loginResult)
+    }
 
-    suspend fun logout()
+    override suspend fun logout() {
+        TODO("Not yet implemented")
+    }
+
 }
