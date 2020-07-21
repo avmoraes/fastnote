@@ -1,10 +1,12 @@
 package br.com.alex.fastnote.ui.login
 
 import android.os.Bundle
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -32,6 +34,16 @@ class LoginFragment: Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        viewModel.getSavedLoginIfSaved()
+
+        viewModel.savedLogin.observe(viewLifecycleOwner, Observer { pair ->
+            if(pair.first) {
+                save_login.isChecked = true
+                username.setText(pair.second.email)
+                password.setText(pair.second.password)
+            }
+        })
 
         login.setOnClickListener {
             viewModel.login(username.text.toString(), password.text.toString(), save_login.isChecked)

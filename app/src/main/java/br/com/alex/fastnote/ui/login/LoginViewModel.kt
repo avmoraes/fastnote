@@ -5,12 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.alex.fastnote.R
+import br.com.alex.fastnote.data.model.User
 import br.com.alex.fastnote.data.repository.ILoginRepository
 import br.com.alex.fastnote.data.repository.LoginRepository
 import br.com.alex.fastnote.data.repository.LoginResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LoginViewModel(private val loginRepository: ILoginRepository): ViewModel() {
 
@@ -26,6 +28,10 @@ class LoginViewModel(private val loginRepository: ILoginRepository): ViewModel()
     val loginFormState: LiveData<LoginFormState>
         get() = _loginState
 
+    private val _savedLogin by lazy{ MutableLiveData<Pair<Boolean, User>>() }
+    val savedLogin: LiveData<Pair<Boolean, User>>
+        get() = _savedLogin
+
     fun login(email: String, password: String, saveLogin: Boolean){
         _loading.value = true
         CoroutineScope(Dispatchers.Main).launch {
@@ -36,6 +42,15 @@ class LoginViewModel(private val loginRepository: ILoginRepository): ViewModel()
                         _loginResult.postValue(loginResult.loggedUser?.let { loggedUser ->
                             LoginResultView.Success(R.string.welcome, loggedUser)
                         })
+                        if(saveLogin) {
+                            CoroutineScope(Dispatchers.Main).launch {
+                                loginRepository.saveLogin(User(email, password))
+                            }
+                        } else {
+                            CoroutineScope(Dispatchers.Main).launch {
+                                loginRepository.clearSavedLogin()
+                            }
+                        }
                     }
                     is LoginResult.NotFound -> {
                         _loginResult.postValue(LoginResultView.NotFound(R.string.login_failed))
@@ -69,4 +84,21 @@ class LoginViewModel(private val loginRepository: ILoginRepository): ViewModel()
     private fun isPasswordValid(password: String): Boolean {
         return password.isNotBlank()
     }
+
+    fun getSavedLoginIfSaved() {
+        CoroutineScope(Dispatchers.Main).launch {
+            val savedLogin = withContext(Dispatchers.IO) {
+                loginRepository.isSavedLogin()
+            }
+
+            if(savedLogin) {
+                val user = withContext(Dispatchers.IO) {
+                    loginRepository.getSavedLogin()
+                }
+
+                _savedLogin.value = Pair(savedLogin, user)
+            }
+        }
+    }
+
 }
