@@ -1,14 +1,15 @@
-package br.com.alex.fastnote.ui.login
+package br.com.alex.fastnote.login.ui.viewmodel
 
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.alex.fastnote.R
-import br.com.alex.fastnote.data.model.User
-import br.com.alex.fastnote.data.repository.ILoginRepository
-import br.com.alex.fastnote.data.repository.LoginRepository
-import br.com.alex.fastnote.data.repository.LoginResult
+import br.com.alex.fastnote.login.data.model.User
+import br.com.alex.fastnote.login.data.repository.ILoginRepository
+import br.com.alex.fastnote.login.data.repository.LoginResult
+import br.com.alex.fastnote.login.ui.view.LoginFormState
+import br.com.alex.fastnote.login.ui.view.LoginResultView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,7 +41,10 @@ class LoginViewModel(private val loginRepository: ILoginRepository): ViewModel()
                 when(loginResult) {
                     is LoginResult.Success -> {
                         _loginResult.postValue(loginResult.loggedUser?.let { loggedUser ->
-                            LoginResultView.Success(R.string.welcome, loggedUser)
+                            LoginResultView.Success(
+                                R.string.welcome,
+                                loggedUser
+                            )
                         })
                         if(saveLogin) {
                             CoroutineScope(Dispatchers.Main).launch {
@@ -53,10 +57,18 @@ class LoginViewModel(private val loginRepository: ILoginRepository): ViewModel()
                         }
                     }
                     is LoginResult.NotFound -> {
-                        _loginResult.postValue(LoginResultView.NotFound(R.string.login_failed))
+                        _loginResult.postValue(
+                            LoginResultView.NotFound(
+                                R.string.login_failed
+                            )
+                        )
                     }
                     is LoginResult.Error -> {
-                        _loginResult.postValue(LoginResultView.Error(R.string.login_failed))
+                        _loginResult.postValue(
+                            LoginResultView.Error(
+                                R.string.login_failed
+                            )
+                        )
                     }
                 }
             }
@@ -65,11 +77,18 @@ class LoginViewModel(private val loginRepository: ILoginRepository): ViewModel()
 
     fun loginDataChanged(username: String, password: String) {
         if (!isUserNameValid(username)) {
-            _loginState.value = LoginFormState.UserNameError(R.string.invalid_username)
+            _loginState.value =
+                LoginFormState.UserNameError(
+                    R.string.invalid_username
+                )
         } else if (!isPasswordValid(password)) {
-            _loginState.value = LoginFormState.PasswordError(R.string.invalid_password)
+            _loginState.value =
+                LoginFormState.PasswordError(
+                    R.string.invalid_password
+                )
         } else {
-            _loginState.value = LoginFormState.IsDataValid()
+            _loginState.value =
+                LoginFormState.IsDataValid()
         }
     }
 

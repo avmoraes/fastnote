@@ -1,13 +1,13 @@
-package br.com.alex.fastnote.di
+package br.com.alex.fastnote.login.di
 
 import android.content.Context
 import android.content.SharedPreferences
-import br.com.alex.fastnote.data.repository.ILoginRepository
-import br.com.alex.fastnote.data.repository.LoginRepository
-import br.com.alex.fastnote.data.repository.datasource.*
-import br.com.alex.fastnote.data.repository.datasource.firebase.Auth
-import br.com.alex.fastnote.data.repository.datasource.firebase.FirebaseAuthImplement
-import br.com.alex.fastnote.ui.login.LoginViewModel
+import br.com.alex.fastnote.login.data.repository.ILoginRepository
+import br.com.alex.fastnote.login.data.repository.LoginRepository
+import br.com.alex.fastnote.login.data.repository.datasource.*
+import br.com.alex.fastnote.login.data.repository.datasource.firebase.Auth
+import br.com.alex.fastnote.login.data.repository.datasource.firebase.FirebaseAuthImplement
+import br.com.alex.fastnote.login.ui.viewmodel.LoginViewModel
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel

@@ -1,4 +1,4 @@
-package br.com.alex.fastnote.ui
+package br.com.alex.fastnote.login.ui.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

@@ -1,7 +1,7 @@
-package br.com.alex.fastnote.data.repository.datasource
+package br.com.alex.fastnote.login.data.repository.datasource
 
-import br.com.alex.fastnote.data.repository.LoginResult
-import br.com.alex.fastnote.data.repository.datasource.firebase.Auth
+import br.com.alex.fastnote.login.data.repository.LoginResult
+import br.com.alex.fastnote.login.data.repository.datasource.firebase.Auth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

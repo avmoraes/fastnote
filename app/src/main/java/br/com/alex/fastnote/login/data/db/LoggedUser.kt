@@ -1,4 +1,4 @@
-package br.com.alex.fastnote.data.db
+package br.com.alex.fastnote.login.data.db
 
 import android.net.Uri
 

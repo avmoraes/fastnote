@@ -1,6 +1,6 @@
-package br.com.alex.fastnote.ui.login
+package br.com.alex.fastnote.login.ui.view
 
-import br.com.alex.fastnote.data.db.LoggedUser
+import br.com.alex.fastnote.login.data.db.LoggedUser
 
 sealed class LoginResultView {
     class Success(val success: Int?, val loggedUser: LoggedUser): LoginResultView()

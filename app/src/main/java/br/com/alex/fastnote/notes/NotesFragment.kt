@@ -1,4 +1,4 @@
-package br.com.alex.fastnote.ui.notes
+package br.com.alex.fastnote.notes
 
 import android.os.Bundle
 import android.view.LayoutInflater

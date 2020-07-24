@@ -1,6 +1,6 @@
-package br.com.alex.fastnote.data.repository.datasource
+package br.com.alex.fastnote.login.data.repository.datasource
 
-import br.com.alex.fastnote.data.model.User
+import br.com.alex.fastnote.login.data.model.User
 
 const val USER_SHARED = "user_login"
 const val USER_EMAIL_KEY = "user_email"

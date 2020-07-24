@@ -1,18 +1,17 @@
-package br.com.alex.fastnote.ui.login
+package br.com.alex.fastnote.login.ui.view
 
 import android.os.Bundle
-import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import br.com.alex.fastnote.R
 import br.com.alex.fastnote.commons.afterTextChanged
 import br.com.alex.fastnote.commons.hideKeyBoard
+import br.com.alex.fastnote.login.ui.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.login.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

@@ -1,6 +1,6 @@
-package br.com.alex.fastnote.data.repository
+package br.com.alex.fastnote.login.data.repository
 
-import br.com.alex.fastnote.data.db.LoggedUser
+import br.com.alex.fastnote.login.data.db.LoggedUser
 
 sealed class LoginResult {
     class Success(val loggedUser: LoggedUser?): LoginResult()

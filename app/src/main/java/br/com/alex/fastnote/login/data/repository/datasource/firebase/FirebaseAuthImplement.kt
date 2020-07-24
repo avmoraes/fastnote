@@ -1,8 +1,8 @@
-package br.com.alex.fastnote.data.repository.datasource.firebase
+package br.com.alex.fastnote.login.data.repository.datasource.firebase
 
-import br.com.alex.fastnote.data.repository.LoginResult
+import br.com.alex.fastnote.login.data.repository.LoginResult
 import com.google.firebase.auth.FirebaseAuth
-import br.com.alex.fastnote.data.db.LoggedUser
+import br.com.alex.fastnote.login.data.db.LoggedUser
 
 class FirebaseAuthImplement(private val firebaseAuth: FirebaseAuth): Auth {
 

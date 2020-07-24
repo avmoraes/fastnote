@@ -1,8 +1,8 @@
-package br.com.alex.fastnote.data.repository
+package br.com.alex.fastnote.login.data.repository
 
-import br.com.alex.fastnote.data.model.User
-import br.com.alex.fastnote.data.repository.datasource.ICacheLoginDataSource
-import br.com.alex.fastnote.data.repository.datasource.ILoginDataSource
+import br.com.alex.fastnote.login.data.model.User
+import br.com.alex.fastnote.login.data.repository.datasource.ICacheLoginDataSource
+import br.com.alex.fastnote.login.data.repository.datasource.ILoginDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

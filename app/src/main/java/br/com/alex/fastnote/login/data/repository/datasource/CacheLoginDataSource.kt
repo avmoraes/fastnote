@@ -1,7 +1,7 @@
-package br.com.alex.fastnote.data.repository.datasource
+package br.com.alex.fastnote.login.data.repository.datasource
 
 import android.content.SharedPreferences
-import br.com.alex.fastnote.data.model.User
+import br.com.alex.fastnote.login.data.model.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

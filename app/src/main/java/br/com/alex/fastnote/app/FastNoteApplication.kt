@@ -1,9 +1,9 @@
 package br.com.alex.fastnote.app
 
 import android.app.Application
-import br.com.alex.fastnote.di.loginDependenciesModule
-import br.com.alex.fastnote.di.loginModule
-import br.com.alex.fastnote.di.prefsModule
+import br.com.alex.fastnote.login.di.loginDependenciesModule
+import br.com.alex.fastnote.login.di.loginModule
+import br.com.alex.fastnote.login.di.prefsModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

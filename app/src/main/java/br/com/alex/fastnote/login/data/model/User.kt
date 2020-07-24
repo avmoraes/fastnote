@@ -1,3 +1,3 @@
-package br.com.alex.fastnote.data.model
+package br.com.alex.fastnote.login.data.model
 
 data class User (val email: String, val password: String)
