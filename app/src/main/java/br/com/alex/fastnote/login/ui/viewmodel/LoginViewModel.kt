@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.alex.fastnote.R
 import br.com.alex.fastnote.login.data.model.User
-import br.com.alex.fastnote.login.data.repository.ILoginRepository
+import br.com.alex.fastnote.login.data.repository.LoginRepository
 import br.com.alex.fastnote.login.data.repository.LoginResult
 import br.com.alex.fastnote.login.ui.view.LoginFormState
 import br.com.alex.fastnote.login.ui.view.LoginResultView
@@ -15,7 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class LoginViewModel(private val loginRepository: ILoginRepository): ViewModel() {
+class LoginViewModel(private val loginRepository: LoginRepository): ViewModel() {
 
     private val _loginResult by lazy { MutableLiveData<LoginResultView>() }
     val loginResult: LiveData<LoginResultView>

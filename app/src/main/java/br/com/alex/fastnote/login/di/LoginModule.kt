@@ -2,11 +2,11 @@ package br.com.alex.fastnote.login.di
 
 import android.content.Context
 import android.content.SharedPreferences
-import br.com.alex.fastnote.login.data.repository.ILoginRepository
 import br.com.alex.fastnote.login.data.repository.LoginRepository
+import br.com.alex.fastnote.login.data.repository.LoginRepositoryImplementation
 import br.com.alex.fastnote.login.data.repository.datasource.*
 import br.com.alex.fastnote.login.data.repository.datasource.firebase.Auth
-import br.com.alex.fastnote.login.data.repository.datasource.firebase.FirebaseAuthImplement
+import br.com.alex.fastnote.login.data.repository.datasource.firebase.FirebaseAuthImplementation
 import br.com.alex.fastnote.login.ui.viewmodel.LoginViewModel
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.android.ext.koin.androidContext
@@ -17,21 +17,23 @@ val prefsModule = module {
     single <SharedPreferences> { androidContext().getSharedPreferences(USER_SHARED, Context.MODE_PRIVATE) }
 }
 
-val loginDependenciesModule = module {
+val authModule = module {
     factory <Auth>{
-        FirebaseAuthImplement(firebaseAuth = FirebaseAuth.getInstance())
+        FirebaseAuthImplementation(firebaseAuth = FirebaseAuth.getInstance())
+    }
+}
+
+val loginDependenciesModule = module {
+    factory <LoginDataSource>() {
+        LoginDataSourceImplementation(auth = get())
     }
 
-    factory <ILoginDataSource>() {
-        LoginDataSource(auth = get())
+    factory <CacheLoginDataSource>() {
+        CacheLoginDataSourceImplementation(get())
     }
 
-    factory <ICacheLoginDataSource>() {
-        CacheLoginDataSource(get())
-    }
-
-    factory <ILoginRepository>() {
-        LoginRepository(loginDataSource = get(), cacheLoginDataSource = get())
+    factory <LoginRepository>() {
+        LoginRepositoryImplementation(loginDataSource = get(), cacheLoginDataSource = get())
     }
 }
 

@@ -4,7 +4,7 @@ import br.com.alex.fastnote.login.data.repository.LoginResult
 import com.google.firebase.auth.FirebaseAuth
 import br.com.alex.fastnote.login.data.db.LoggedUser
 
-class FirebaseAuthImplement(private val firebaseAuth: FirebaseAuth): Auth {
+class FirebaseAuthImplementation(private val firebaseAuth: FirebaseAuth): Auth {
 
     override suspend fun loginByEmail(
         email: String,

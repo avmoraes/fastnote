@@ -1,6 +1,7 @@
 package br.com.alex.fastnote.app
 
 import android.app.Application
+import br.com.alex.fastnote.login.di.authModule
 import br.com.alex.fastnote.login.di.loginDependenciesModule
 import br.com.alex.fastnote.login.di.loginModule
 import br.com.alex.fastnote.login.di.prefsModule
@@ -16,7 +17,7 @@ class FastNoteApplication: Application() {
         startKoin {
             androidLogger(level = Level.ERROR)
             androidContext(this@FastNoteApplication)
-            modules(loginModule, prefsModule, loginDependenciesModule)
+            modules(authModule, loginModule, prefsModule, loginDependenciesModule)
         }
     }
 }
