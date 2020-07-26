@@ -71,7 +71,7 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `When view model getSavedLoginIfSaved get user then set user`() = runBlockingTest {
+    fun `when view model getSavedLoginIfSaved get user then set user`() = runBlockingTest {
         // Arrange
         val user = User("fastnotetest@email.com", "123456")
         val result = Pair(true, user)
@@ -86,6 +86,20 @@ class LoginViewModelTest {
         userInfoCaptor.run {
             verify(savedLoginObserver, times(1)).onChanged(capture())
             assertEquals(result, value)
+        }
+    }
+
+    @Test
+    fun `when view model getSavedLoginIfSaved not get User then do not call savedLogin live data`() = runBlockingTest {
+        // Arrange
+        whenever(repository.isSavedLogin()).thenReturn(false)
+
+        // Act
+        viewModel.getSavedLoginIfSaved()
+
+        // Assert
+        userInfoCaptor.run {
+            verify(savedLoginObserver, times(0)).onChanged(capture())
         }
     }
 
