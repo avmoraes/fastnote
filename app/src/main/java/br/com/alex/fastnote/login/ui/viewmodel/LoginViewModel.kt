@@ -106,15 +106,10 @@ class LoginViewModel(private val loginRepository: LoginRepository): ViewModel() 
 
     fun getSavedLoginIfSaved() {
         CoroutineScope(Dispatchers.Main).launch {
-            val savedLogin = withContext(Dispatchers.IO) {
-                loginRepository.isSavedLogin()
-            }
+            val savedLogin = loginRepository.isSavedLogin()
 
             if(savedLogin) {
-                val user = withContext(Dispatchers.IO) {
-                    loginRepository.getSavedLogin()
-                }
-
+                val user = loginRepository.getSavedLogin()
                 _savedLogin.value = Pair(savedLogin, user)
             }
         }
